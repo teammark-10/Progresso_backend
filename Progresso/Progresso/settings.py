@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'Progresso.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgres',
+        'NAME': 'postgres',
+        'USER':'postgres',
+        'HOST':'db',
+        'PORT':5432
+    
     }
 }
 
