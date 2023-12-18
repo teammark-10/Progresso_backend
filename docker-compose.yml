@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  djangoapp:
+    container_name: proggresso_container
+    restart: always
+    build: .
+    ports:
+      - 8000:8000  
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/Progresso
+    env_file:
+      - .env
+    depends_on:
+      - postgres_DB
+        
+
+  postgres_DB:
+    container_name: psqldb
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=progressoDB
+      - POSTGRES_USER=progresso
+      - POSTGRES_PASSWORD=progresso123
+    ports:
+      - 5432:5432
+    restart: always
+
+volumes:
+  postgres_data:   
